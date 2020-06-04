@@ -1,0 +1,31 @@
+.btn-Incart{
+    color: white;
+    background: blue;
+    position: absolute;
+    display: flex;
+    height: 20px;
+    /* opacity: 0; */
+    transform: scaleX(0);
+    transform-origin: 100%;
+    right: 0;
+    bottom: 0;
+    transition: all 0.3s;
+    border: none;
+    outline: cornflowerblue;
+}
+.product-img{
+    transform: scale(1);
+    transition: all 0.3s ease-in-out;
+    
+}
+.product-item{
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+.product-item:hover .btn-Incart{
+    transform: scaleX(1);
+}
+.product-item:hover .product-img{
+    transform: scale(1.1);
+}
