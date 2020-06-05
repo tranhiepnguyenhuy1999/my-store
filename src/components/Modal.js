@@ -22,7 +22,10 @@ export default class Modal extends Component {
                        <Button variant="outline-primary" onClick={value.closeModal}
                        >Go back</Button>{' '}
                    </Link>
-                   <Button variant="outline-warning" onClick={()=>value.handelIncart(modalItem)}>Add to cart</Button>{' '}
+                   <Link to="/cart">
+                      <Button variant="outline-warning"  onClick={()=>value.handelIncart(modalItem)}>Add to cart</Button>{' '}
+                   </Link>
+                   
                  </Col>
              </Row>      
            </Container>       

@@ -4,15 +4,14 @@ import MystoreContext from '../context/MystoreContext'
 import './TableCart.css'
 export default class TableCart extends Component {
     render() {
-        return (
-
+        return(
             <Container className="mt-3">
                 <MystoreContext.Consumer>
                     {value => {
                         if (value.cart.length === 0)
                             return <h1>There is no product in cart</h1>
                         else
-                            return <Table striped bordered hover className="col-12">
+                            return<Table striped bordered hover className="col-12">
                                 <thead>
                                     <tr>
                                         <th ><Col sx={2} className="text-align-center">Product</Col></th>
@@ -33,9 +32,13 @@ export default class TableCart extends Component {
                                             </td>
                                             <td>{item.title}</td>
                                             <td><span>$</span>{item.price}</td>
-                                            <td>X</td>
-                                            <td><Button variant="warning">Undo</Button>{' '}</td>
-                                            <td>{item.total}</td>
+                                            <td><button onClick={()=>value.descreasCartItem(item)}>-</button>
+                                            <input type="text" size="5" value={item.count}></input>
+                                            <button onClick={()=>value.increasCartItem(item)}>+</button>
+                                        </td>
+                                            <td><Button variant="warning"
+                                            onClick={()=> value.removeCart(item)}><i class="fas fa-trash-alt"></i></Button>{' '}</td>
+                                            <td><span>Total: $</span>{item.total}</td>
                                         </tr>
 
                                     })
@@ -45,6 +48,15 @@ export default class TableCart extends Component {
                             </Table>
                     }}
 
+                </MystoreContext.Consumer>
+                <MystoreContext.Consumer>
+                    {(value)=>{
+                        if (value.cart.length === 0) return null;
+                        return<Col sx={12}>
+                        <Button variant="danger" onClick={value.clearCart}>Clear All Cart</Button>
+                        <span>Total Cart : $</span> {value.totalCart}
+                        </Col>
+                    }}
                 </MystoreContext.Consumer>
             </Container>
 

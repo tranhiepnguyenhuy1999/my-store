@@ -29,3 +29,8 @@
 .product-item:hover .product-img{
     transform: scale(1.1);
 }
+.productlist-deal{
+    width :100%;
+    height: 500px;
+    object-fit: contain;
+}
