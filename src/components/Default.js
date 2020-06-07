@@ -4,7 +4,7 @@ export default class Default extends Component {
     render() {
         return (
             <div>
-                This page is not found
+                <h1>Không tìm thấy trang bạn cần tìm. Vui lòng nhập đúng địa chỉ </h1>
             </div>
         )
     }

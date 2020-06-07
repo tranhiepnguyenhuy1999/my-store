@@ -12,23 +12,23 @@ export default class Details extends Component {
                         const {img, title, company, info, inCart} =value.productDetail;
                         return (
                                 <Container>
-                                    <Col className="mb-4 mt-5">
-                                        <h1>{title}</h1>
+                                    <Col className="mb-5 mt-5">
+                                        <h1 className="text-center">{title}</h1>
                                     </Col>
-                                     <Row>
+                                    <Row>
                                     <Col sx={12} md={6}>
                                         <img src={img} alt="Product in detail"></img>
                                     </Col>
                                     <Col>
-                                    <h3>Name: {title}</h3>
-                                    <h4>Company:{company}</h4>
-                                    <div>{info}</div>
-                                    <div className="mt-2">
+                                    <h3 className="mb-3">Name: {title}</h3>
+                                    <h4  className="mb-3">Company:{company}</h4>
+                                    <div  className="mb-3">{info}</div>
+                                    <div className="mt-3">
                                     
                                         <Link to="/">
-                                            <Button variant="primary">Go back to Products</Button>{' '}
+                                            <Button variant="primary">Trở về trang bán hàng</Button>{' '}
                                         </Link>
-                                        {(inCart)?<Button variant="warning" disabled>Add to cart</Button>:<Button variant="warning" onClick={()=>value.handelIncart(value.productDetail)}>Add to cart</Button>}
+                                        {(inCart)?<Button variant="warning" disabled>Thêm vào giỏ</Button>:<Button variant="warning" onClick={()=>value.handelIncart(value.productDetail)}>Add to cart</Button>}                                        
                                     </div>
                                     
  

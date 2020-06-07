@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MystoreContext from './MystoreContext'
-import {storeProducts} from '../data'
+import {storeProducts, DealProduct} from '../data'
+
 export default class Mystore extends Component {
     constructor(props){
         super(props);
@@ -11,11 +12,13 @@ export default class Mystore extends Component {
             modalItem: [],
             cart: [],
             totalCart: 0,
+            productDeal:[],
         };
       
-    } 
+    }
     componentDidMount(){
      this.setProducts();
+     this.setDealProduct();
     }
     setProducts =()=>{
         let tempproducts=[];
@@ -27,7 +30,18 @@ export default class Mystore extends Component {
                 return{products: tempproducts}
             })
     }
+    setDealProduct=()=>{
+        let tempproducts=[];
+        DealProduct.map((item)=>{
+            let singelItem ={...item};
+            tempproducts=[...tempproducts, singelItem];
+        })
+        this.setState(()=>{
+            return{productDeal: tempproducts}
+        })
+    }
     handelIncart =(item) =>{
+            console.log(this.state.productDetail)
             const tempProducts = [...this.state.products];
             let index = tempProducts.indexOf(item);
             let product=tempProducts[index];
@@ -46,7 +60,18 @@ export default class Mystore extends Component {
     getItemtoproductdetail =(product)=>{
         this.setState(()=>{return {
             productDetail: product,
+        }})
+    }
+    dealProductDetail= ()=>{
+        let deal1 =[...this.state.productDeal];
+        let deal ={}
+        deal1.map(item=> {deal=item}) 
+
+        this.setState(()=>{return {
+            productDetail: deal,
         }}) 
+
+        
     }
     changeOpenModal =(item) =>{
         this.setState(()=>{
@@ -116,23 +141,7 @@ export default class Mystore extends Component {
             this.setProducts()
         })
     }
-    // onChangeCount=(event,item)=>{
-    //     if(event.keyCode<=95 || event.keyCode >=106)
-    //     {
-    //         event.preventDefault();
-    //     }
-    //     else 
-    //     {
-    //     const tempCart = [...this.state.cart];
-    //     let index= tempCart.indexOf(item);
-    //     tempCart[index].count=event.target.value;
-    //     tempCart[index].total=event.target.value * tempCart[index].price;
-    //     this.setState(()=>{
-    //         return {cart : tempCart}
-    //     })
-    //     }
-        
-    // }
+ 
     render() {
         return (
             <MystoreContext.Provider value={{
@@ -146,6 +155,7 @@ export default class Mystore extends Component {
             descreasCartItem: this.descreasCartItem,
             onChangeCount: this.onChangeCount,
             clearCart: this.clearCart,
+            dealProductDetail : this.dealProductDetail,
             } }>
                 {this.props.children}
             </MystoreContext.Provider>
