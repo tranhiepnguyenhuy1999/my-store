@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card} from 'react-bootstrap'
+import { Card, Row} from 'react-bootstrap'
 import './Product.css'
 import {Link} from 'react-router-dom'
 import MystoreContext from '../context/MystoreContext'
@@ -11,7 +11,8 @@ export default class Product extends Component {
             <MystoreContext.Consumer>
                 { value =>{
                     return(
-                        <Card style={{ width: '18rem' }} className="mb-3">
+                        <Row className="justify-content-center">
+                            <Card style={{ width: '18rem' }}>
                            
                                 <div className="product-item" onClick={() => value.getItemtoproductdetail(product)}>
                                 <Link to="/detail">
@@ -29,6 +30,8 @@ export default class Product extends Component {
                                 </Card.Text>
                             </Card.Body>
                         </Card>
+                        </Row>
+                        
                     )
                 }}
             </MystoreContext.Consumer>

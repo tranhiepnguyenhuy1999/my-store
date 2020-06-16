@@ -1,27 +1,9 @@
 import React, { Component } from 'react'
 import { Container, Table, Button, Col, Row } from 'react-bootstrap'
 import MystoreContext from '../context/MystoreContext'
+import CardItem from './CartItem'
 import './TableCart.css'
 export default class TableCart extends Component {
-    constructor(){
-        super();
-        this.state={
-            itemCart : 0,
-        }
-        onChangeCount=onChangeCount.bind(this)
-        function onChangeCount(event){
-            if(event.keyCode<=95 || event.keyCode >=106)
-            {
-                event.preventDefault();
-            }
-            else 
-            this.setState(()=>{
-                return {count: event.target.value}
-            })
-        }
-    }
-        
-
     render() {
         return(
             <Container className="mt-3">
@@ -45,26 +27,8 @@ export default class TableCart extends Component {
                                 </thead>
                                 <tbody>
                                     {value.cart.map((item) => {
-                                        return <tr>
-                                            <td>
-                                                <Row className="justify-content-center">
-                                                     <div className="cart-frame">
-                                                    <img src={item.img} alt="Product" className="cart-img"></img>
-                                                    </div>
-                                                </Row>
-                                            </td>
-                                            <td>{item.title}</td>
-                                            <td className="text-center"><span>$</span>{item.price}</td>
-                                            <td className="text-center">
-                                            <button onClick={()=>value.descreasCartItem(item)}>-</button>
-                                            <input type="text" size="3" value={item.count} className="text-center" onChange={this.onChangeCount}></input>
-                                            <button onClick={()=>value.increasCartItem(item)}>+</button>
-                                        </td>
-                                            <td className="text-center"><Button variant="warning"
-                                            onClick={()=> value.removeCart(item)}><i class="fas fa-trash-alt"></i></Button>{' '}</td>
-                                            <td><span>Total: $</span>{item.total}</td>
-                                        </tr>
-
+                                        return<CardItem item={item} change={value.changeIncart}>
+                                        </CardItem> 
                                     })
                                     }
 

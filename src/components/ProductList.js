@@ -20,15 +20,17 @@ export default class ProductList extends Component {
                                     </Container>
                             }}
                         </MystoreContext.Consumer>
-                        
+                
                         <Row>
                             <MystoreContext.Consumer>
                                 {
                                 (value) =>{
                                     return value.products.map((item)=>{
-                                    return <Col sx={12} md={4}>
+                                    return< Col sx={12} md={4} className="mb-3">
                                         <Product product={item}></Product>
                                             </Col>
+
+                                    
                                     })
                                     }
                                 }

@@ -141,7 +141,18 @@ export default class Mystore extends Component {
             this.setProducts()
         })
     }
- 
+    changeIncart=(item, value)=>{
+            console.log(item)
+            let carts=[...this.state.cart]
+            console.log(carts)
+            let index= carts.indexOf(item)
+            console.log(index)
+            carts[index].count=value;
+            carts[index].total=value*carts[index].price;
+            this.setState(()=>{
+                return {cart: carts}
+            })
+    }
     render() {
         return (
             <MystoreContext.Provider value={{
@@ -153,9 +164,9 @@ export default class Mystore extends Component {
             removeCart: this.removeCart,
             increasCartItem: this.increasCartItem,
             descreasCartItem: this.descreasCartItem,
-            onChangeCount: this.onChangeCount,
             clearCart: this.clearCart,
             dealProductDetail : this.dealProductDetail,
+            changeIncart: this.changeIncart,
             } }>
                 {this.props.children}
             </MystoreContext.Provider>
