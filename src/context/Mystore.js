@@ -24,7 +24,7 @@ export default class Mystore extends Component {
         let tempproducts=[];
         storeProducts.map((item)=>{
                 let singelItem ={...item};
-                tempproducts=[...tempproducts, singelItem];
+                return tempproducts=[...tempproducts, singelItem];
             })
             this.setState(()=>{
                 return{products: tempproducts}
@@ -34,7 +34,7 @@ export default class Mystore extends Component {
         let tempproducts=[];
         DealProduct.map((item)=>{
             let singelItem ={...item};
-            tempproducts=[...tempproducts, singelItem];
+            return tempproducts=[...tempproducts, singelItem];
         })
         this.setState(()=>{
             return{productDeal: tempproducts}
@@ -63,12 +63,11 @@ export default class Mystore extends Component {
         }})
     }
     dealProductDetail= ()=>{
-        let deal1 =[...this.state.productDeal];
-        let deal ={}
-        deal1.map(item=> {deal=item}) 
-
+        let deal=[...this.state.productDeal];
+        let Products=[...this.state.products]
+        let DelPro=Products.find(item=>deal[0].id===item.id)
         this.setState(()=>{return {
-            productDetail: deal,
+            productDetail: DelPro,
         }}) 
 
         
